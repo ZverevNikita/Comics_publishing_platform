@@ -1,0 +1,78 @@
+{% extends "admin/login.html" %}
+{% load i18n static %}
+
+{#{% block title %} {% trans "Register a new user" %} {% endblock %}#}
+
+{% block bodyclass %}{{ block.super }} Регистрация{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Регистрация</a></h1>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if form.errors and not form.non_field_errors %}
+        <p class="errornote">
+            {% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please
+                correct the errors below.{% endblocktranslate %}
+        </p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="errornote">
+                {{ error }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+    <div id="content-main">
+{#        <div class="login-header">Регистрация</div>#}
+
+        <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+            <div class="form-row">
+                {{ form.username.errors }}
+                {{ form.username.label_tag }} {{ form.username }}
+            </div>
+            <div class="form-row">
+                {{ form.password1.errors }}
+                {{ form.password1.label_tag }} {{ form.password1 }}
+                <input type="hidden" name="next" value="{{ next }}">
+            </div>
+            <div class="form-row">
+                {{ form.password2.errors }}
+                {{ form.password2.label_tag }} {{ form.password2 }}
+                <input type="hidden" name="next" value="{{ next }}">
+            </div>
+
+            <div class="submit-row">
+                <input type="submit" value="{% translate 'Регистрация' %}">
+            </div>
+        </form>
+
+        <p style="text-align: right; margin: 10px 0 0 0">
+            <a href="{% url 'admin:login' %}" style="font-size: 12px; color: #0C3C78; text-decoration: none;">Уже зарегистрированы?</a>
+        </p>
+    </div>
+
+    <style>
+        #id_password1, #id_password2 {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .login-header {
+            text-align: center;
+            padding: 0 20px;
+            border-radius: 8px;
+            color: #000;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+    </style>
+{% endblock %}
