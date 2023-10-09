@@ -16,9 +16,9 @@ class Migration(migrations.Migration):
             name='ComicBook',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255, verbose_name='Название комикса')),
-                ('description', models.TextField(verbose_name='Описание комикса')),
-                ('date_of_creation', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания комикса')),
+                ('title', models.CharField(max_length=255, verbose_name='Название')),
+                ('description', models.TextField(verbose_name='Описание')),
+                ('date_of_creation', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
                 ('publish', models.BooleanField(default=False, verbose_name='Опубликовать')),
             ],
             options={
