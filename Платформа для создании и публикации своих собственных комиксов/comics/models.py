@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class ComicBook(models.Model):
     title = models.CharField(max_length=255, verbose_name="Название комикса")
-    author = models.ForeignKey(to='users.User', on_delete=models.CASCADE, verbose_name="Автор комикса")
+    author = (to='users.User', on_delete=models.CASCADE, verbose_name="Автор комикса")
     description = models.TextField(verbose_name="Описание комикса")
     date_of_creation = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания комикса")
     publish = models.BooleanField(default=False, verbose_name="Опубликовано")
