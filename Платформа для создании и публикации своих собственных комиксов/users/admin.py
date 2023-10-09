@@ -4,5 +4,5 @@ from django.contrib.auth.models import Group
 
 admin.site.unregister(Group)
 
-AdminSite.site_title = 'Комиксы'
+= 'Комиксы'
 AdminSite.site_header = 'Комиксы'
