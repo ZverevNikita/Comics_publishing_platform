@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from comics.models import ComicBookPage, 
+from comics.models import ComicBookPage, ComicBook
 
 
 class ComicBookPageInline(admin.TabularInline):
