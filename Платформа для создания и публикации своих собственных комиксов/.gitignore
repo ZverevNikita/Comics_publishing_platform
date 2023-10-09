@@ -1,0 +1,4 @@
+ngrok.exe
+*.sqlite3
+.idea
+media
