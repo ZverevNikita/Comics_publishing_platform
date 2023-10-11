@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container mt-5 d-flex flex-wrap">
+
+        {% for item in comics %}
+            <div class="card m-2" style="width: 18rem;">
+                <img src="{{ item.comicbookpage_set.first.image.url }}" class="card-img-top" alt="{{ item.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <blockquote class="blockquote mb-0">
+
+                        <p class="card-text" style="font-size: 16px">{{ item.description|truncatechars:100 }}</p>
+                        <footer class="blockquote-footer">{{ item.author.username }}</footer>
+                    </blockquote>
+
+                    <div class="d-flex justify-content-end">
+
+                        <a href="{% url 'comic_detail' item.pk %}" class="mt-3 btn btn-primary">Читать полностью</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
