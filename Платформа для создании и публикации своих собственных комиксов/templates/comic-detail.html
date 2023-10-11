@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="display-1 mt-5 mb-4">{{ comic.title }}</h1>
+        <figure>
+            <blockquote class="blockquote">
+                <p>{{ comic.description }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                {{ comic.author.username }}
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Gallery -->
+    <div class="row ms-4 me-4 mt-5 mb-5">
+        {% for page in pages %}
+            <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 mb-4 mb-lg-0">
+                <img
+                        src="{{ page.image.url }}"
+                        class="w-100 shadow rounded mb-4"
+                        alt="{{ comic.title }}"
+                />
+            </div>
+
+        {% endfor %}
+    </div>
+    <!-- Gallery -->
+{% endblock %}
